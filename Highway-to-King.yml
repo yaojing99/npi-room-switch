@@ -1,0 +1,20 @@
+---
+- hosts: dgtchmfg-sw-3r05
+  gather_facts: false
+  connection: local
+  
+  tasks:      
+    - name: send configuration commands to Switch
+      telnet:
+        user: swxadmin 
+        password: swxguy 
+        login_prompt: "Username: "
+        pause: 1
+        prompts:
+          - "[#]"
+        command:
+          - configure terminal
+          - interface range g0/6, g0/14, g0/23 
+          - switch access vlan 46 
+          - end
+          - exit
